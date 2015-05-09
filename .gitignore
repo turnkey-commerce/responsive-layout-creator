@@ -99,3 +99,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+.project
+.pydevproject
+.settings/org.eclipse.core.resources.prefs

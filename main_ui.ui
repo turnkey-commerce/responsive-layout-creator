@@ -53,14 +53,14 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="ButtonMoveUp">
+         <widget class="QPushButton" name="buttonMoveUp">
           <property name="text">
            <string>Move Up</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="ButtonMoveDown">
+         <widget class="QPushButton" name="buttonMoveDown">
           <property name="text">
            <string>Move Down</string>
           </property>
@@ -97,7 +97,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="ButtonRemove">
+         <widget class="QPushButton" name="buttonRemoveSelected">
           <property name="text">
            <string>Remove Selected Layout</string>
           </property>
@@ -121,7 +121,7 @@
       <item row="2" column="1">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <widget class="QPushButton" name="ButtonAdd">
+         <widget class="QPushButton" name="buttonAdd">
           <property name="text">
            <string>Add &gt;&gt;</string>
           </property>
@@ -130,7 +130,7 @@
        </layout>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="LabelAvailableLayouts">
+       <widget class="QLabel" name="labelAvailableLayouts">
         <property name="font">
          <font>
           <pointsize>10</pointsize>
@@ -144,7 +144,7 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QLabel" name="LabelSelectedLayouts">
+       <widget class="QLabel" name="labelSelectedLayouts">
         <property name="font">
          <font>
           <pointsize>10</pointsize>
@@ -160,7 +160,7 @@
       <item row="0" column="2">
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="buttonSaveHtmlFile">
           <property name="text">
            <string>Save to HTML File</string>
           </property>
@@ -184,8 +184,6 @@
      </layout>
     </item>
    </layout>
-   <zorder>listView_2</zorder>
-   <zorder>gridLayoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
