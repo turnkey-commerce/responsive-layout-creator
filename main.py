@@ -2,7 +2,6 @@ import sys
 from PySide import QtGui
 from main_ui import Ui_MainWindow
 import constants as c
-from PySide.QtGui import QStandardItemModel
 
 class MainWindow(QtGui.QMainWindow):
 
@@ -24,6 +23,8 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.buttonMoveUp.clicked.connect(self.buttonMoveUp_clicked)
         self.ui.buttonRemoveSelected.clicked.connect(self.buttonRemoveSelected_clicked)
         self.ui.buttonSaveHtmlFile.clicked.connect(self.buttonSaveHtmlFile_clicked)
+        #Selection Events
+        self.ui.listWidgetAvailable.doubleClicked.connect(self.buttonAdd_clicked)
         #Get the initial Available List Items
         self._get_available_layout_elements()
   
@@ -51,17 +52,47 @@ class MainWindow(QtGui.QMainWindow):
     def buttonSaveHtmlFile_clicked(self):
         self.save_html_file()
         
+    def move_selected_item_up(self):
+        current_index = None
+        for item in self.ui.listWidgetSelected.selectedItems():
+            current_index = self.ui.listWidgetSelected.row(item)
+        if current_index is not None and current_index != 0:
+            current_item = self.ui.listWidgetSelected.takeItem(current_index)
+            self.ui.listWidgetSelected.insertItem(current_index - 1, current_item)
+            self.ui.listWidgetSelected.setCurrentRow(current_index - 1)
+        elif current_index:
+            self.ui.listWidgetSelected.setCurrentRow(current_index)
+        
+    def move_selected_item_down(self):
+        current_index = None
+        for item in self.ui.listWidgetSelected.selectedItems():
+            current_index = self.ui.listWidgetSelected.row(item)
+        if current_index is not None and current_index != self.ui.listWidgetSelected.count() - 1:
+            current_item = self.ui.listWidgetSelected.takeItem(current_index)
+            self.ui.listWidgetSelected.insertItem(current_index + 1, current_item)
+            self.ui.listWidgetSelected.setCurrentRow(current_index + 1)
+        elif current_index:
+            self.ui.listWidgetSelected.setCurrentRow(current_index)
+        
+    def add_selected_item(self):
+        current_item = self.ui.listWidgetAvailable.currentItem()
+        self.ui.listWidgetSelected.addItem(current_item.text())
+            
+    def remove_selected_item(self):
+        for item in self.ui.listWidgetSelected.selectedItems():
+            self.ui.listWidgetSelected.takeItem(self.ui.listWidgetSelected.row(item))
+        #Remove selection to prevent accidents with multiple clicks.
+        for index in range(self.ui.listWidgetSelected.count()):
+            self.ui.listWidgetSelected.item(index).setSelected(False)
+        
     def _get_available_layout_elements(self):
         import json
         file_open = open(c.AVAILABLE_LAYOUT_ELEMENTS_FILE, 'r')
         file_contents = file_open.read()
         layout_elements  = json.loads(file_contents)
-        model = QStandardItemModel(self.ui.listViewAvailable)
         for layout_element in layout_elements:
-            item = QtGui.QStandardItem(layout_element)
-            model.appendRow(item)
-        self.ui.listViewAvailable.setModel(model)
-        
+            self.ui.listWidgetAvailable.addItem(layout_element)
+                   
 
 def main():
     app = QtGui.QApplication(sys.argv)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1029</width>
-    <height>749</height>
+    <width>811</width>
+    <height>639</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,26 +17,6 @@
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="2" column="2">
-       <widget class="QListView" name="listViewSelected">
-        <property name="minimumSize">
-         <size>
-          <width>250</width>
-          <height>500</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QListView" name="listViewAvailable">
-        <property name="minimumSize">
-         <size>
-          <width>250</width>
-          <height>500</height>
-         </size>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="3">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -99,7 +79,7 @@
         <item>
          <widget class="QPushButton" name="buttonRemoveSelected">
           <property name="text">
-           <string>Remove Selected Layout</string>
+           <string>Remove Selected Element</string>
           </property>
          </widget>
         </item>
@@ -118,6 +98,16 @@
         </item>
        </layout>
       </item>
+      <item row="2" column="0">
+       <widget class="QListWidget" name="listWidgetAvailable">
+        <property name="minimumSize">
+         <size>
+          <width>250</width>
+          <height>400</height>
+         </size>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="1">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
@@ -128,20 +118,6 @@
          </widget>
         </item>
        </layout>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelAvailableLayouts">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Available Layout Elements</string>
-        </property>
-       </widget>
       </item>
       <item row="1" column="2">
        <widget class="QLabel" name="labelSelectedLayouts">
@@ -154,6 +130,20 @@
         </property>
         <property name="text">
          <string>Selected Layout Elements</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelAvailableLayouts">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Available Layout Elements</string>
         </property>
        </widget>
       </item>
@@ -181,6 +171,16 @@
         </item>
        </layout>
       </item>
+      <item row="2" column="2">
+       <widget class="QListWidget" name="listWidgetSelected">
+        <property name="minimumSize">
+         <size>
+          <width>250</width>
+          <height>400</height>
+         </size>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -190,7 +190,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1029</width>
+     <width>811</width>
      <height>21</height>
     </rect>
    </property>
