@@ -1,0 +1,11 @@
+<!-- Banner Layout  -->
+	<div class="row-fluid">
+		<div class="span9 offset1 right hidden-phone">
+			<a href="/">
+			<img alt="Header Title" src="images/homepage_header.jpg" title="Header Title" /></a>
+		</div>
+		<div class="center visible-phone">
+			<a href="/">
+			<img alt="Phone Header Title" src="images/homepage_header_phone.jpg" title="Phone Header Title" /></a>
+		</div>
+	</div>

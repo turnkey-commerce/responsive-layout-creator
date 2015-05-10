@@ -1,0 +1,9 @@
+<!-- Small Image Right Image Layout  -->
+	<div class="row-fluid">
+		<div class="span6 offset2">
+			<p>Content goes Here</p>
+		</div>
+		<div class="span2 center">
+			<p>Small Image goes Here</p>
+		</div>
+	</div>

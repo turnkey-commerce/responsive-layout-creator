@@ -1,0 +1,9 @@
+<!-- Medium Image Left Layout  -->
+	<div class="row-fluid">
+		<div class="span3 offset2 center">
+			<p>Medium image goes Here</p>
+		</div>
+		<div class="span5">
+			<p>Content goes Here</p>
+		</div>
+	</div>

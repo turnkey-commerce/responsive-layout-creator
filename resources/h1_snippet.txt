@@ -1,0 +1,6 @@
+<!-- H1 Layout  -->
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			<h1>Main Header</h1>
+		</div>
+	</div>

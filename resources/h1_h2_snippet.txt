@@ -1,0 +1,7 @@
+<!-- H1 with H2 Layout  -->
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			<h1>Main Header</h1>
+			<h2>Tag Line</h2>
+		</div>
+	</div>

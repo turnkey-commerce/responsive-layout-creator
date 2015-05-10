@@ -1,0 +1,6 @@
+<!-- Full-width Text Layout  -->
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			<p>Full-Width Content goes here</p>
+		</div>
+	</div>

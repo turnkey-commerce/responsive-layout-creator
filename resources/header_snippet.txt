@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Content Title</title>
+<meta name="description" content="Content Description">
+<meta name="author" content="Author">
+<meta name="keywords" content="Content Keywords">
+<meta content="index, follow" name="robots">
+<meta name="revisit-after" content="30 days">
+<link href="Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="Content/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+<link href="Content/articles.css" rel="stylesheet" type="text/css" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+</head>
+<body>
+<div class="container">
+<!--End of Header  -->
