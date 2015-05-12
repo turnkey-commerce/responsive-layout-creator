@@ -1,0 +1,8 @@
+<!-- Facebook like Layout  -->
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			<p class="center">
+				<iframe src="http://www.facebook.com/plugins/like.php?href=$pageUrl" style="border:none; width:200px; height:30px"></iframe>
+			</p>
+		</div>
+	</div>

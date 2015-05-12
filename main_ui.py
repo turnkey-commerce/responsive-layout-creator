@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main_ui.ui'
 #
-# Created: Mon May 11 22:04:19 2015
+# Created: Tue May 12 13:44:10 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -105,13 +105,21 @@ class Ui_MainWindow(object):
         self.editKeyWords.setMaximumSize(QtCore.QSize(16777215, 150))
         self.editKeyWords.setObjectName("editKeyWords")
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.editKeyWords)
-        self.labelFullUrl = QtGui.QLabel(self.centralwidget)
-        self.labelFullUrl.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.labelFullUrl.setObjectName("labelFullUrl")
-        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.labelFullUrl)
+        self.labelFullPageUrl = QtGui.QLabel(self.centralwidget)
+        self.labelFullPageUrl.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.labelFullPageUrl.setObjectName("labelFullPageUrl")
+        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.labelFullPageUrl)
         self.editFullUrl = QtGui.QLineEdit(self.centralwidget)
         self.editFullUrl.setObjectName("editFullUrl")
         self.formLayout.setWidget(3, QtGui.QFormLayout.FieldRole, self.editFullUrl)
+        self.labelFullUrl_2 = QtGui.QLabel(self.centralwidget)
+        self.labelFullUrl_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.labelFullUrl_2.setObjectName("labelFullUrl_2")
+        self.formLayout.setWidget(4, QtGui.QFormLayout.LabelRole, self.labelFullUrl_2)
+        self.editYouTubeIframe = QtGui.QTextEdit(self.centralwidget)
+        self.editYouTubeIframe.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.editYouTubeIframe.setObjectName("editYouTubeIframe")
+        self.formLayout.setWidget(4, QtGui.QFormLayout.FieldRole, self.editYouTubeIframe)
         self.gridLayout.addLayout(self.formLayout, 1, 3, 1, 1)
         self.verticalLayout_2.addLayout(self.gridLayout)
         self.horizontalLayout = QtGui.QHBoxLayout()
@@ -297,7 +305,8 @@ class Ui_MainWindow(object):
         self.labelTitle.setText(QtGui.QApplication.translate("MainWindow", "Title: ", None, QtGui.QApplication.UnicodeUTF8))
         self.labelDescription.setText(QtGui.QApplication.translate("MainWindow", "Description:", None, QtGui.QApplication.UnicodeUTF8))
         self.labelKeyWords.setText(QtGui.QApplication.translate("MainWindow", "Key Words:", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelFullUrl.setText(QtGui.QApplication.translate("MainWindow", "Full URL:", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelFullPageUrl.setText(QtGui.QApplication.translate("MainWindow", "Full Page URL:", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelFullUrl_2.setText(QtGui.QApplication.translate("MainWindow", "YouTube iFrame:", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonSaveHtmlFile.setText(QtGui.QApplication.translate("MainWindow", "Save to HTML File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuLoadLayoutTemplate.setText(QtGui.QApplication.translate("MainWindow", "Load Layout Template", None, QtGui.QApplication.UnicodeUTF8))

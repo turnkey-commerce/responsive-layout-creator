@@ -2,7 +2,7 @@
 	<div class="row-fluid">
 		<div class="span8 offset2">
 			<div class="video-container center">
-				<p>YouTube embedded iframe goes here</p>
+				<p>$youTubeIframe</p>
 			</div>
 		</div>
 	</div>

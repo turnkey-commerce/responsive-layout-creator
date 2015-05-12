@@ -126,6 +126,7 @@ class MainWindow(QtGui.QMainWindow):
                 inputs[c.INPUT_DESCRIPTION] = self.ui.editDescription.toPlainText()
                 inputs[c.INPUT_KEYWORDS] = self.ui.editKeyWords.toPlainText()
                 inputs[c.INPUT_PAGE_URL] = self.ui.editFullUrl.text()
+                inputs[c.INPUT_YOUTUBE_IFRAME] =  self.ui.editYouTubeIframe.toPlainText()
                 template_file_contents = Template(file_contents).substitute(inputs)
                 content += template_file_contents + os.linesep
             except Exception as exc:

@@ -1,10 +1,11 @@
 [
     {"name": "Banner",                    "snippetFile": "banner_snippet.txt"},
+    {"name": "Facebook Like",             "snippetFile": "facebook_like.txt"},
     {"name": "H1",                        "snippetFile": "h1_snippet.txt"},
     {"name": "H1 with H2",                "snippetFile": "h1_h2_snippet.txt"},
     {"name": "Full Width Text",           "snippetFile": "full_width_text.txt"},
-    {"name": "Small Image Left  | Text",   "snippetFile": "small_image_left.txt"},
-    {"name": "Medium Image Left | Text", "snippetFile": "medium_image_left.txt"},
+    {"name": "Small Image Left  | Text",  "snippetFile": "small_image_left.txt"},
+    {"name": "Medium Image Left | Text",  "snippetFile": "medium_image_left.txt"},
     {"name": "Text | Small Image Right",  "snippetFile": "small_image_right.txt"},
     {"name": "Text | Medium Image Right", "snippetFile": "medium_image_right.txt"},
     {"name": "Large Image",               "snippetFile": "large_image.txt"},
