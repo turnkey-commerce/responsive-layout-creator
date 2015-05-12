@@ -1,6 +1,7 @@
 import sys, os
 from PySide import QtGui
 from main_ui import Ui_MainWindow
+from string import Template
 import constants as c
 
 class MainWindow(QtGui.QMainWindow):
@@ -119,7 +120,14 @@ class MainWindow(QtGui.QMainWindow):
             try:
                 file_open = open(snippet_file, 'r')
                 file_contents = file_open.read()
-                content += file_contents + os.linesep
+                # Map inputs to the content
+                inputs = {}
+                inputs[c.INPUT_TITLE] = self.ui.editTitle.text()
+                inputs[c.INPUT_DESCRIPTION] = self.ui.editDescription.toPlainText()
+                inputs[c.INPUT_KEYWORDS] = self.ui.editKeyWords.toPlainText()
+                inputs[c.INPUT_PAGE_URL] = self.ui.editFullUrl.text()
+                template_file_contents = Template(file_contents).substitute(inputs)
+                content += template_file_contents + os.linesep
             except Exception as exc:
                 self._show_message_box('Problem reading Snippet file: ' + str(exc).replace("\\\\", "\\"))
                 return ""
