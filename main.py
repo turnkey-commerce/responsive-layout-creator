@@ -3,6 +3,7 @@ from PySide import QtGui
 from main_ui import Ui_MainWindow
 from string import Template
 import constants as c
+from layout_template import LayoutTemplate
 
 class MainWindow(QtGui.QMainWindow):
 
@@ -12,9 +13,11 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.setupUi(self)
         self.available_layout_elements = []
         self.init_ui()
+        self.template = LayoutTemplate(self.ui)
         self.show()
 
     def init_ui(self):
+        self.setWindowTitle(c.APPLICATION_NAME)
         #Menu Events
         self.ui.menuLoadLayoutTemplate.activated.connect(self.menuLoadLayoutTemplate_activated)
         self.ui.menuSaveLayoutTemplate.activated.connect(self.menuSaveLayoutTemplate_activated)
@@ -100,6 +103,30 @@ class MainWindow(QtGui.QMainWindow):
                 shutil.copyfile(fileName[0], fileName[0] + ".bak")
             file_save = open(fileName[0], 'w')
             file_save.write(content)
+            
+    def load_template(self):
+        file_name = QtGui.QFileDialog.getOpenFileName(self, "Open Template File", "", "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
+        if file_name[0] is not None and file_name[0] is not u'':
+            self.current_file = file_name[0]
+            self.template.load_template(file_name[0])
+            self.change_title()
+        
+    def save_template(self):
+        file_name = QtGui.QFileDialog.getSaveFileName(self, "Save Template File", "", "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
+        if file_name[0] is not None and file_name[0] is not u'':
+            self.current_file = file_name[0]
+            self.template.save_template(file_name[0])
+            self.change_title()
+            
+    def change_title(self):
+        import ntpath
+        file_display = ""
+        if hasattr(self, 'current_file') and self.current_file:
+            head, tail = ntpath.split(self.current_file)
+            file_display = tail or ntpath.basename(head)
+        self.setWindowTitle("%s - %s" % (c.APPLICATION_NAME, file_display))
+            
+# Private methods
    
     def _get_snippet_file_list(self):
         snippet_file_list = []
