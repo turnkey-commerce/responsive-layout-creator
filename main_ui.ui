@@ -750,13 +750,19 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>HTML File</string>
+    </property>
+    <addaction name="menuSaveHtmlFile"/>
+   </widget>
+   <widget class="QMenu" name="menuLayout_Template">
+    <property name="title">
+     <string>Layout Template</string>
     </property>
     <addaction name="menuLoadLayoutTemplate"/>
     <addaction name="menuSaveLayoutTemplate"/>
-    <addaction name="menuSaveHtmlFile"/>
    </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuLayout_Template"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="menuLoadLayoutTemplate">

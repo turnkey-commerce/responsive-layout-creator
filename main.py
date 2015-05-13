@@ -105,14 +105,14 @@ class MainWindow(QtGui.QMainWindow):
             file_save.write(content)
             
     def load_template(self):
-        file_name = QtGui.QFileDialog.getOpenFileName(self, "Open Template File", "", "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
+        file_name = QtGui.QFileDialog.getOpenFileName(self, "Open Template File", self._get_documents_folder(), "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
         if file_name[0] is not None and file_name[0] is not u'':
             self.current_file = file_name[0]
             self.template.load_template(file_name[0])
             self.change_title()
         
     def save_template(self):
-        file_name = QtGui.QFileDialog.getSaveFileName(self, "Save Template File", "", "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
+        file_name = QtGui.QFileDialog.getSaveFileName(self, "Save Template File", self._get_documents_folder(), "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
         if file_name[0] is not None and file_name[0] is not u'':
             self.current_file = file_name[0]
             self.template.save_template(file_name[0])
@@ -127,6 +127,9 @@ class MainWindow(QtGui.QMainWindow):
         self.setWindowTitle("%s - %s" % (c.APPLICATION_NAME, file_display))
             
 # Private methods
+
+    def _get_documents_folder(self):
+        return os.path.join(os.path.expanduser('~'), 'Documents')
    
     def _get_snippet_file_list(self):
         snippet_file_list = []

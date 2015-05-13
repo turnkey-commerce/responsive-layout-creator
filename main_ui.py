@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main_ui.ui'
 #
-# Created: Tue May 12 13:44:10 2015
+# Created: Wed May 13 07:36:52 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -275,6 +275,8 @@ class Ui_MainWindow(object):
         self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
+        self.menuLayout_Template = QtGui.QMenu(self.menubar)
+        self.menuLayout_Template.setObjectName("menuLayout_Template")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -285,10 +287,11 @@ class Ui_MainWindow(object):
         self.menuSaveLayoutTemplate.setObjectName("menuSaveLayoutTemplate")
         self.menuSaveHtmlFile = QtGui.QAction(MainWindow)
         self.menuSaveHtmlFile.setObjectName("menuSaveHtmlFile")
-        self.menuFile.addAction(self.menuLoadLayoutTemplate)
-        self.menuFile.addAction(self.menuSaveLayoutTemplate)
         self.menuFile.addAction(self.menuSaveHtmlFile)
+        self.menuLayout_Template.addAction(self.menuLoadLayoutTemplate)
+        self.menuLayout_Template.addAction(self.menuSaveLayoutTemplate)
         self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuLayout_Template.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -308,7 +311,8 @@ class Ui_MainWindow(object):
         self.labelFullPageUrl.setText(QtGui.QApplication.translate("MainWindow", "Full Page URL:", None, QtGui.QApplication.UnicodeUTF8))
         self.labelFullUrl_2.setText(QtGui.QApplication.translate("MainWindow", "YouTube iFrame:", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonSaveHtmlFile.setText(QtGui.QApplication.translate("MainWindow", "Save to HTML File", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "HTML File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuLayout_Template.setTitle(QtGui.QApplication.translate("MainWindow", "Layout Template", None, QtGui.QApplication.UnicodeUTF8))
         self.menuLoadLayoutTemplate.setText(QtGui.QApplication.translate("MainWindow", "Load Layout Template", None, QtGui.QApplication.UnicodeUTF8))
         self.menuSaveLayoutTemplate.setText(QtGui.QApplication.translate("MainWindow", "Save to Layout Template", None, QtGui.QApplication.UnicodeUTF8))
         self.menuSaveHtmlFile.setText(QtGui.QApplication.translate("MainWindow", "Save to HTML File", None, QtGui.QApplication.UnicodeUTF8))
