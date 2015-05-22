@@ -2,6 +2,7 @@ import sys, os
 from PySide import QtGui
 from main_ui import Ui_MainWindow
 from string import Template
+from config import Config
 import constants as c
 from layout_template import LayoutTemplate
 
@@ -14,6 +15,13 @@ class MainWindow(QtGui.QMainWindow):
         self.available_layout_elements = []
         self.init_ui()
         self.template = LayoutTemplate(self.ui)
+        self.config = Config()
+        if c.CONFIG_USER_LAST_TEMPLATE_FILE in self.config.user_config:
+            template_file = self.config.user_config[c.CONFIG_USER_LAST_TEMPLATE_FILE]    
+            if os.path.exists(template_file):
+                self.current_file = template_file
+                self.template.load_template(template_file)
+                self.change_title()
         self.show()
 
     def init_ui(self):
@@ -109,6 +117,8 @@ class MainWindow(QtGui.QMainWindow):
         if file_name[0] is not None and file_name[0] is not u'':
             self.current_file = file_name[0]
             self.template.load_template(file_name[0])
+            self.config.user_config[c.CONFIG_USER_LAST_TEMPLATE_FILE] = file_name[0]
+            self.config.save_user_config()
             self.change_title()
         
     def save_template(self):
@@ -116,6 +126,8 @@ class MainWindow(QtGui.QMainWindow):
         if file_name[0] is not None and file_name[0] is not u'':
             self.current_file = file_name[0]
             self.template.save_template(file_name[0])
+            self.config.user_config[c.CONFIG_USER_LAST_TEMPLATE_FILE] = file_name[0]
+            self.config.save_user_config()
             self.change_title()
             
     def change_title(self):
