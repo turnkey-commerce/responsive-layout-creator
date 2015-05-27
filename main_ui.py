@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main_ui.ui'
 #
-# Created: Wed May 13 07:36:52 2015
+# Created: Tue May 26 22:28:17 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -96,6 +96,7 @@ class Ui_MainWindow(object):
         self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.labelDescription)
         self.editDescription = QtGui.QTextEdit(self.centralwidget)
         self.editDescription.setMaximumSize(QtCore.QSize(16777215, 150))
+        self.editDescription.setAcceptRichText(False)
         self.editDescription.setObjectName("editDescription")
         self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.editDescription)
         self.labelKeyWords = QtGui.QLabel(self.centralwidget)
@@ -103,23 +104,28 @@ class Ui_MainWindow(object):
         self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.labelKeyWords)
         self.editKeyWords = QtGui.QTextEdit(self.centralwidget)
         self.editKeyWords.setMaximumSize(QtCore.QSize(16777215, 150))
+        self.editKeyWords.setAcceptRichText(False)
         self.editKeyWords.setObjectName("editKeyWords")
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.editKeyWords)
         self.labelFullPageUrl = QtGui.QLabel(self.centralwidget)
         self.labelFullPageUrl.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.labelFullPageUrl.setObjectName("labelFullPageUrl")
         self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.labelFullPageUrl)
-        self.editFullUrl = QtGui.QLineEdit(self.centralwidget)
-        self.editFullUrl.setObjectName("editFullUrl")
-        self.formLayout.setWidget(3, QtGui.QFormLayout.FieldRole, self.editFullUrl)
         self.labelFullUrl_2 = QtGui.QLabel(self.centralwidget)
         self.labelFullUrl_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.labelFullUrl_2.setObjectName("labelFullUrl_2")
         self.formLayout.setWidget(4, QtGui.QFormLayout.LabelRole, self.labelFullUrl_2)
         self.editYouTubeIframe = QtGui.QTextEdit(self.centralwidget)
-        self.editYouTubeIframe.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.editYouTubeIframe.setMaximumSize(QtCore.QSize(16777215, 125))
+        self.editYouTubeIframe.setAcceptRichText(False)
         self.editYouTubeIframe.setObjectName("editYouTubeIframe")
         self.formLayout.setWidget(4, QtGui.QFormLayout.FieldRole, self.editYouTubeIframe)
+        self.editFullUrl = QtGui.QTextEdit(self.centralwidget)
+        self.editFullUrl.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.editFullUrl.setBaseSize(QtCore.QSize(0, 0))
+        self.editFullUrl.setAcceptRichText(False)
+        self.editFullUrl.setObjectName("editFullUrl")
+        self.formLayout.setWidget(3, QtGui.QFormLayout.FieldRole, self.editFullUrl)
         self.gridLayout.addLayout(self.formLayout, 1, 3, 1, 1)
         self.verticalLayout_2.addLayout(self.gridLayout)
         self.horizontalLayout = QtGui.QHBoxLayout()
