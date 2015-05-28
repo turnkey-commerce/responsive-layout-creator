@@ -101,7 +101,7 @@ class MainWindow(QtGui.QMainWindow):
 
     def save_html_file(self):
         # Assemble the content from the snippet file list from the selected elements.
-        fileName = QtGui.QFileDialog.getSaveFileName(self, "Save HTML File", "", "HTML Files (*.htm *.html)")
+        fileName = QtGui.QFileDialog.getSaveFileName(self, "Save HTML File", self._get_last_saved_folder(), "HTML Files (*.htm *.html)")
         if fileName[0] is not None and fileName[0] is not u'':
             snippet_files = self._get_snippet_file_list()
             content = self._get_content_from_snippet_files(snippet_files)
@@ -111,6 +111,9 @@ class MainWindow(QtGui.QMainWindow):
                 shutil.copyfile(fileName[0], fileName[0] + ".bak")
             file_save = open(fileName[0], 'w')
             file_save.write(content)
+            self.config.user_config[c.CONFIG_USER_LAST_SAVE_FOLDER] = os.path.dirname(fileName[0])
+            self.config.save_user_config()
+            self._show_message_box("Saved HTML File: " + fileName[0])
             
     def load_template(self):
         file_name = QtGui.QFileDialog.getOpenFileName(self, "Open Template File", self._get_documents_folder(), "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
@@ -142,6 +145,12 @@ class MainWindow(QtGui.QMainWindow):
 
     def _get_documents_folder(self):
         return os.path.join(os.path.expanduser('~'), 'Documents')
+    
+    def _get_last_saved_folder(self):
+        if c.CONFIG_USER_LAST_SAVE_FOLDER in self.config.user_config:
+            return self.config.user_config[c.CONFIG_USER_LAST_SAVE_FOLDER]
+        else:
+            return self._get_documents_folder()
    
     def _get_snippet_file_list(self):
         snippet_file_list = []

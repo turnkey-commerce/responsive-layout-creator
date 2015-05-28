@@ -26,3 +26,4 @@ INPUT_YOUTUBE_IFRAME = "youTubeIframe"
 #Config
 CONFIG_USER = "User"
 CONFIG_USER_LAST_TEMPLATE_FILE = "LastTemplateFile"
+CONFIG_USER_LAST_SAVE_FOLDER = "LastSaveFolder"

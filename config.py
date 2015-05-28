@@ -22,6 +22,7 @@ class Config(object):
         config = ConfigParser()
         config.add_section(c.CONFIG_USER)
         config.set(c.CONFIG_USER, c.CONFIG_USER_LAST_TEMPLATE_FILE, self.user_config[c.CONFIG_USER_LAST_TEMPLATE_FILE])
+        config.set(c.CONFIG_USER, c.CONFIG_USER_LAST_SAVE_FOLDER, self.user_config[c.CONFIG_USER_LAST_SAVE_FOLDER])
         config.write(cfg_file)
         cfg_file.close()
         
@@ -30,6 +31,9 @@ class Config(object):
             config = ConfigParser()
             config.read(c.CONFIG_USER + ".ini")
             if config.has_section(c.CONFIG_USER):
-                self.user_config[c.CONFIG_USER_LAST_TEMPLATE_FILE] = config.get(c.CONFIG_USER, c.CONFIG_USER_LAST_TEMPLATE_FILE).replace('"','')
+                if config.has_option(c.CONFIG_USER, c.CONFIG_USER_LAST_TEMPLATE_FILE):
+                    self.user_config[c.CONFIG_USER_LAST_TEMPLATE_FILE] = config.get(c.CONFIG_USER, c.CONFIG_USER_LAST_TEMPLATE_FILE).replace('"','')
+                if config.has_option(c.CONFIG_USER, c.CONFIG_USER_LAST_SAVE_FOLDER):
+                    self.user_config[c.CONFIG_USER_LAST_SAVE_FOLDER] = config.get(c.CONFIG_USER, c.CONFIG_USER_LAST_SAVE_FOLDER).replace('"','')
                 
         
