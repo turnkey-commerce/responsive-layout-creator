@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Responsive Layout Creator</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/resources/ResponsiveLayoutCreatorIcon.png</normaloff>:/images/resources/ResponsiveLayoutCreatorIcon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
@@ -806,6 +810,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

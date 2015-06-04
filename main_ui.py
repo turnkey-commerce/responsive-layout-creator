@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main_ui.ui'
 #
-# Created: Tue May 26 22:28:17 2015
+# Created: Wed Jun 03 23:12:00 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,6 +13,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(881, 639)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/images/resources/ResponsiveLayoutCreatorIcon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.centralwidget)
@@ -323,3 +326,4 @@ class Ui_MainWindow(object):
         self.menuSaveLayoutTemplate.setText(QtGui.QApplication.translate("MainWindow", "Save to Layout Template", None, QtGui.QApplication.UnicodeUTF8))
         self.menuSaveHtmlFile.setText(QtGui.QApplication.translate("MainWindow", "Save to HTML File", None, QtGui.QApplication.UnicodeUTF8))
 
+import resources_rc

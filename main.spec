@@ -13,6 +13,7 @@ exe = EXE(pyz,
           strip=None,
           upx=True,
           console=False,
+          icon = 'resources\\ResponsiveLayout.ico',
           version = 'version.txt' )
 
 ##### include other directory in distribution #######
