@@ -29,7 +29,8 @@ def extra_datas(data_directory):
     rec_glob("%s/*" % data_directory, files)
     extra_datas = []
     for f in files:
-        extra_datas.append((f, f, 'DATA'))
+        if not (f.endswith(".ico") or f.endswith(".png")):
+            extra_datas.append((f, f, 'DATA'))
 
     return extra_datas
 ###########################################
