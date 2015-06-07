@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="images">
+    <file>resources/arrow_up.png</file>
+    <file>resources/arrow_down.png</file>
     <file>resources/ResponsiveLayoutCreatorIcon.png</file>
   </qresource>
 </RCC>
