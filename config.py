@@ -21,8 +21,10 @@ class Config(object):
         cfg_file = open(c.CONFIG_USER + ".ini","w")
         config = ConfigParser()
         config.add_section(c.CONFIG_USER)
-        config.set(c.CONFIG_USER, c.CONFIG_USER_LAST_TEMPLATE_FILE, self.user_config[c.CONFIG_USER_LAST_TEMPLATE_FILE])
-        config.set(c.CONFIG_USER, c.CONFIG_USER_LAST_SAVE_FOLDER, self.user_config[c.CONFIG_USER_LAST_SAVE_FOLDER])
+        if c.CONFIG_USER_LAST_TEMPLATE_FILE in self.user_config:
+            config.set(c.CONFIG_USER, c.CONFIG_USER_LAST_TEMPLATE_FILE, self.user_config[c.CONFIG_USER_LAST_TEMPLATE_FILE])
+        if c.CONFIG_USER_LAST_SAVE_FOLDER in self.user_config:
+            config.set(c.CONFIG_USER, c.CONFIG_USER_LAST_SAVE_FOLDER, self.user_config[c.CONFIG_USER_LAST_SAVE_FOLDER])
         config.write(cfg_file)
         cfg_file.close()
         

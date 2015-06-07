@@ -116,7 +116,7 @@ class MainWindow(QtGui.QMainWindow):
             self._show_message_box("Saved HTML File: " + fileName[0])
             
     def load_template(self):
-        file_name = QtGui.QFileDialog.getOpenFileName(self, "Open Template File", self._get_documents_folder(), "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
+        file_name = QtGui.QFileDialog.getOpenFileName(self, "Open Template File", self._get_templates_folder(), "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
         if file_name[0] is not None and file_name[0] is not u'':
             self.current_file = file_name[0]
             self.template.load_template(file_name[0])
@@ -125,7 +125,7 @@ class MainWindow(QtGui.QMainWindow):
             self.change_title()
         
     def save_template(self):
-        file_name = QtGui.QFileDialog.getSaveFileName(self, "Save Template File", self._get_documents_folder(), "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
+        file_name = QtGui.QFileDialog.getSaveFileName(self, "Save Template File", self._get_templates_folder(), "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
         if file_name[0] is not None and file_name[0] is not u'':
             self.current_file = file_name[0]
             self.template.save_template(file_name[0])
@@ -145,6 +145,12 @@ class MainWindow(QtGui.QMainWindow):
 
     def _get_documents_folder(self):
         return os.path.join(os.path.expanduser('~'), 'Documents')
+    
+    def _get_templates_folder(self):
+        templates_folder = os.path.join('.', 'templates')
+        if not os.path.exists(templates_folder):
+            os.mkdir(templates_folder)
+        return os.path.join('.', 'templates')
     
     def _get_last_saved_folder(self):
         if c.CONFIG_USER_LAST_SAVE_FOLDER in self.config.user_config:
