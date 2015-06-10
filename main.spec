@@ -29,7 +29,7 @@ def extra_datas(data_directory):
     rec_glob("%s/*" % data_directory, files)
     extra_datas = []
     for f in files:
-        if not (f.endswith(".ico") or f.endswith(".png")):
+        if not (f.endswith(".ico") or f.endswith(".png") or f.endswith(".odt")):
             extra_datas.append((f, f, 'DATA'))
 
     return extra_datas
@@ -37,6 +37,7 @@ def extra_datas(data_directory):
 
 # append the required directories
 a.datas += extra_datas('resources')
+a.datas += extra_datas('guide')
 
 coll = COLLECT(exe,
                a.binaries,
