@@ -100,20 +100,22 @@ class MainWindow(QtGui.QMainWindow):
             self.ui.listWidgetSelected.item(index).setSelected(False)
 
     def save_html_file(self):
-        # Assemble the content from the snippet file list from the selected elements.
-        fileName = QtGui.QFileDialog.getSaveFileName(self, "Save HTML File", self._get_last_saved_folder(), "HTML Files (*.htm *.html)")
-        if fileName[0] is not None and fileName[0] is not u'':
-            snippet_files = self._get_snippet_file_list()
-            content = self._get_content_from_snippet_files(snippet_files)
-            # Check if file exists and if so back it up to .bak
-            if os.path.exists(fileName[0]):
-                import shutil
-                shutil.copyfile(fileName[0], fileName[0] + ".bak")
-            file_save = open(fileName[0], 'w')
-            file_save.write(content)
-            self.config.user_config[c.CONFIG_USER_LAST_SAVE_FOLDER] = os.path.dirname(fileName[0])
-            self.config.save_user_config()
-            self._show_message_box("Saved HTML File: " + fileName[0])
+        # First check that the inputs are valid and if so get the file for saving.
+        if self._validate_inputs():
+            fileName = QtGui.QFileDialog.getSaveFileName(self, "Save HTML File", self._get_last_saved_folder(), "HTML Files (*.htm *.html)")
+            if fileName[0] is not None and fileName[0] is not u'':
+                # Assemble the content from the snippet file list from the selected elements.
+                snippet_files = self._get_snippet_file_list()
+                content = self._get_content_from_snippet_files(snippet_files)
+                # Check if file exists and if so back it up to .bak
+                if os.path.exists(fileName[0]):
+                    import shutil
+                    shutil.copyfile(fileName[0], fileName[0] + ".bak")
+                file_save = open(fileName[0], 'w')
+                file_save.write(content)
+                self.config.user_config[c.CONFIG_USER_LAST_SAVE_FOLDER] = os.path.dirname(fileName[0])
+                self.config.save_user_config()
+                self._show_message_box("Saved HTML File: " + fileName[0])
             
     def load_template(self):
         file_name = QtGui.QFileDialog.getOpenFileName(self, "Open Template File", self._get_templates_folder(), "Template Files (*%s)" % c.TEMPLATE_EXTENSION)
@@ -142,6 +144,21 @@ class MainWindow(QtGui.QMainWindow):
         self.setWindowTitle("%s - %s" % (c.APPLICATION_NAME, file_display))
             
 # Private methods
+    def _validate_inputs(self):
+        is_valid = True
+        errors = ""
+        if self.ui.listWidgetSelected.count() == 0:
+            errors += "At least one layout element must be selected.\n"
+        if self.ui.editTitle.text().strip() == '':
+            errors += "Title must be provided.\n"
+        if self.ui.editDescription.toPlainText().strip() == '':
+            errors += "Description must be provided.\n"
+        if self.ui.editFullUrl.toPlainText().strip() == '':
+            errors += "Full Page URL must be provided.\n"
+        if len(errors) > 0:
+            is_valid = False
+            self._show_message_box("Error:\n" + errors)
+        return is_valid
 
     def _get_documents_folder(self):
         return os.path.join(os.path.expanduser('~'), 'Documents')
@@ -164,7 +181,10 @@ class MainWindow(QtGui.QMainWindow):
         snippet_file_list.append(os.path.join(c.RESOURCES_FOLDER, "header_snippet.txt"))
         for index in range(self.ui.listWidgetSelected.count()):
             element_name = self.ui.listWidgetSelected.item(index).text()
-            index = self._find(self.available_layout_elements, c.AVAILABLE_LAYOUT_ITEM_NAME, element_name)
+            try:
+                index = self._find(self.available_layout_elements, c.AVAILABLE_LAYOUT_ITEM_NAME, element_name)
+            except ValueError:
+                continue
             snippet_name = self.available_layout_elements[index][c.AVAILABLE_LAYOUT_ITEM_SNIPPET_FILE]
             snippet_file_list.append(os.path.join(c.RESOURCES_FOLDER, snippet_name))
         #always add a footer snippet that will contain boilerplate for the footer.
@@ -178,12 +198,7 @@ class MainWindow(QtGui.QMainWindow):
                 file_open = open(snippet_file, 'r')
                 file_contents = file_open.read()
                 # Map inputs to the content
-                inputs = {}
-                inputs[c.INPUT_TITLE] = self.ui.editTitle.text()
-                inputs[c.INPUT_DESCRIPTION] = self.ui.editDescription.toPlainText()
-                inputs[c.INPUT_KEYWORDS] = self.ui.editKeyWords.toPlainText()
-                inputs[c.INPUT_PAGE_URL] = self.ui.editFullUrl.toPlainText()
-                inputs[c.INPUT_YOUTUBE_IFRAME] =  self.ui.editYouTubeIframe.toPlainText()
+                inputs = self._get_inputs()
                 template_file_contents = Template(file_contents).substitute(inputs)
                 content += template_file_contents + os.linesep
             except Exception as exc:
@@ -191,6 +206,15 @@ class MainWindow(QtGui.QMainWindow):
                 return ""
         return content
         
+    def _get_inputs(self):
+        inputs = {}
+        inputs[c.INPUT_TITLE] = self.ui.editTitle.text()
+        inputs[c.INPUT_DESCRIPTION] = self.ui.editDescription.toPlainText()
+        inputs[c.INPUT_KEYWORDS] = self.ui.editKeyWords.toPlainText()
+        inputs[c.INPUT_PAGE_URL] = self.ui.editFullUrl.toPlainText()
+        inputs[c.INPUT_YOUTUBE_IFRAME] = self.ui.editYouTubeIframe.toPlainText()
+        return inputs
+
     def _get_available_layout_elements(self):
         import json
         file_open = open(c.AVAILABLE_LAYOUT_ELEMENTS_FILE, 'r')
@@ -203,7 +227,7 @@ class MainWindow(QtGui.QMainWindow):
         for i, dic in enumerate(lst):
             if dic[key] == value:
                 return i
-        return ValueError("Key not found")
+        raise ValueError("Key not found")
 
     def _show_message_box(self, message):
         messageBox = QtGui.QMessageBox()
