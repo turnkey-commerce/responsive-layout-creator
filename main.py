@@ -105,14 +105,18 @@ class MainWindow(QtGui.QMainWindow):
             fileName = QtGui.QFileDialog.getSaveFileName(self, "Save HTML File", self._get_last_saved_folder(), "HTML Files (*.htm *.html)")
             if fileName[0] is not None and fileName[0] is not u'':
                 # Assemble the content from the snippet file list from the selected elements.
-                snippet_files = self._get_snippet_file_list()
-                content = self._get_content_from_snippet_files(snippet_files)
-                # Check if file exists and if so back it up to .bak
-                if os.path.exists(fileName[0]):
-                    import shutil
-                    shutil.copyfile(fileName[0], fileName[0] + ".bak")
-                file_save = open(fileName[0], 'w')
-                file_save.write(content)
+                try:
+                    snippet_files = self._get_snippet_file_list()
+                    content = self._get_content_from_snippet_files(snippet_files)
+                    # Check if file exists and if so back it up to .bak
+                    if os.path.exists(fileName[0]):
+                        import shutil
+                        shutil.copyfile(fileName[0], fileName[0] + ".bak")
+                    file_save = open(fileName[0], 'w')
+                    file_save.write(content)
+                except Exception as exc:
+                    self._show_message_box("Error saving HTML File: %s\n %s" % (fileName[0], str(exc)))
+                    return
                 self.config.user_config[c.CONFIG_USER_LAST_SAVE_FOLDER] = os.path.dirname(fileName[0])
                 self.config.save_user_config()
                 self._show_message_box("Saved HTML File: " + fileName[0])
@@ -208,11 +212,11 @@ class MainWindow(QtGui.QMainWindow):
         
     def _get_inputs(self):
         inputs = {}
-        inputs[c.INPUT_TITLE] = self.ui.editTitle.text()
-        inputs[c.INPUT_DESCRIPTION] = self.ui.editDescription.toPlainText()
-        inputs[c.INPUT_KEYWORDS] = self.ui.editKeyWords.toPlainText()
-        inputs[c.INPUT_PAGE_URL] = self.ui.editFullUrl.toPlainText()
-        inputs[c.INPUT_YOUTUBE_IFRAME] = self.ui.editYouTubeIframe.toPlainText()
+        inputs[c.INPUT_TITLE] = self.ui.editTitle.text().encode('utf-8').strip()
+        inputs[c.INPUT_DESCRIPTION] = self.ui.editDescription.toPlainText().encode('utf-8').strip()
+        inputs[c.INPUT_KEYWORDS] = self.ui.editKeyWords.toPlainText().encode('utf-8').strip()
+        inputs[c.INPUT_PAGE_URL] = self.ui.editFullUrl.toPlainText().encode('utf-8').strip()
+        inputs[c.INPUT_YOUTUBE_IFRAME] = self.ui.editYouTubeIframe.toPlainText().encode('utf-8').strip()
         return inputs
 
     def _get_available_layout_elements(self):
